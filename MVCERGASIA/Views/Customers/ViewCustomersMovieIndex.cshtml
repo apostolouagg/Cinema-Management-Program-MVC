@@ -1,0 +1,67 @@
+﻿@model MVCERGASIA.Models.ViewCustomersMoviesViewModel
+
+@if (ViewBag.flag == true)
+{
+    <script>
+        alert('@ViewBag.AlertMessage');
+    </script>
+}
+
+<h1 class="mb-3 text-left">Movie</h1>
+
+<div class="text-left">
+    <form method="post" action="ViewCustomersMovieIndex">
+
+        <div class="mb-3">
+            <label for="" class="form-label">Name</label>
+            <input type="text" readonly class="form-control" asp-for="moviename">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Length</label>
+            <input type="text" readonly class="form-control" asp-for="movielength">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Screening Time</label>
+            <input type="text" readonly class="form-control" asp-for="movieTime">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Cinema</label>
+            <input type="text" readonly class="form-control" asp-for="movieCinemaName">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Tickets Left</label>
+            <input type="text" readonly class="form-control" asp-for="tickets">
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            <p>How many seats would you like to book for this movie?</p>
+            <div class="mb-3">
+                <div class="input-group mb-3">
+                    <select class="custom-select" id="inputGroupSelect02" asp-for="ticketstotake">
+                        <option selected value="1">1</option>
+                        <option selected value="2">2</option>
+                        <option selected value="3">3</option>
+                        <option selected value="4">4</option>
+                        <option selected value="5">5</option>
+                        <option selected value="6">6</option>
+                        <option selected value="7">7</option>
+                        <option selected value="8">8</option>
+                        <option selected value="9">9</option>
+                        <option selected value="10">10</option>
+                    </select>
+                </div>
+            </div>
+
+            <input type="hidden" class="form-control" value="@ViewBag.Customer" asp-for="customerUsername">
+            <input type="hidden" class="form-control" value="@ViewBag.id" asp-for="movieId">
+
+            <button type="submit" class="btn btn-primary" asp-action="AddReservation" asp-controller="Customers">Submit Reservation</button>
+        }
+
+    </form>
+</div>

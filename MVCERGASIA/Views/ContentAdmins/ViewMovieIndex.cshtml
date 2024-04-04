@@ -1,0 +1,97 @@
+﻿@model MVCERGASIA.Models.AddMovieViewModel
+
+<h1 class="mb-3">Movie</h1>
+
+<div>
+    <form method="post" action="ViewMovieIndex">
+        <div class="mb-3">
+            <label for="" class="form-label">Id</label>
+            <input type="text" readonly class="form-control" asp-for="Moviesid">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Name</label>
+            <input type="text" readonly class="form-control" asp-for="Moviename">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Content</label>
+            <input type="text" readonly class="form-control" asp-for="Moviecontent">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Length</label>
+            <input type="text" readonly class="form-control" asp-for="Movielength">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Type</label>
+            <input type="text" readonly class="form-control" asp-for="Movietype">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Summary</label>
+            <input type="text" readonly class="form-control" asp-for="Moviesummary">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Director</label>
+            <input type="text" readonly class="form-control" asp-for="Moviedirector">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Screening Time</label>
+            <input type="text" readonly class="form-control" value="@ViewBag.assignedPro">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Cinema</label>
+            <input type="text" readonly class="form-control" value="@ViewBag.assignedCinName">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Movie seats</label>
+            <input type="text" readonly class="form-control" asp-for="MovieSeats">
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            <p>Assign diffrent screening time:</p>
+            <div class="mb-3">
+                <div class="input-group mb-3">
+                    <select id="custom-select" class="inputGroupSelect02" asp-for="MovieTime">
+                        @foreach (Provoles provoles in ViewBag.provoles)
+                        {
+                            if (provoles.provoles_time != ViewBag.assignedPro)
+                            {
+                                <option value="@provoles.provoles_time">@provoles.provoles_time</option>
+                            }
+                        }
+                    </select>
+
+                </div>
+            </div>
+
+            <p>Assign different Cinema:</p>
+            <div class="mb-3">
+                <div class="input-group mb-3">
+                    <select id="custom-select" class="inputGroupSelect02" asp-for="MovieCinemaId">
+                        @foreach (Cinemas cinemas in ViewBag.cinema)
+                        {
+                            if (cinemas.cinemaid != ViewBag.assignedCin)
+                            {
+                                <option value="@cinemas.cinemaid">@cinemas.cinemaname</option>
+                            }
+                        }
+                    </select>
+
+                </div>
+            </div>
+
+            <input type="hidden" class="form-control" value="@ViewBag.ContentAdmins" asp-for="MovieContentAdminId">
+
+            <button type="submit" class="btn btn-primary" asp-action="AssignMovieIndex" asp-controller="ContentAdmins">Submit</button>
+        }
+
+    </form>
+</div>

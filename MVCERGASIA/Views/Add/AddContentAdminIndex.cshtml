@@ -1,0 +1,38 @@
+﻿@model MVCERGASIA.Models.AddContentAndCustomerViewModel
+
+@if (ViewBag.flag == true)
+{
+    <script>
+        alert('@ViewBag.AlertMessage');
+    </script>
+}
+
+<h1 class="mb-3">Add Content Admin</h1>
+
+<div>
+    <form method="post" action="AddContentAdmin">
+        <div class="mb-3">
+            <label for="" class="form-label">Email</label>
+            <input type="email" class="form-control" placeholder="ex. theodora@gmail.com" asp-for="Cemail">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Name</label>
+            <input type="text" class="form-control" placeholder="ex. Theodora (Name must be letters only)" asp-for="Cname">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Username</label>
+            <input type="text" class="form-control" placeholder="ex. theodora123 (Username must NOT contain symbols)" asp-for="AddCusername">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Password</label>
+            <input type="text" class="form-control" placeholder="ex. 12345" asp-for="Cpassword">
+        </div>
+
+        <input type="hidden" class="form-control" value="@ViewBag.adUsername" asp-for="adUsername">
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

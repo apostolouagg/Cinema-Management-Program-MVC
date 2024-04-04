@@ -1,0 +1,63 @@
+﻿@model MVCERGASIA.Models.LoginViewModel
+
+@if (ViewBag.flag == true)
+{
+    <script>
+        alert('@ViewBag.AlertMessage');
+    </script>
+}
+
+<div class="float-end">
+    <p class="mb-3">You are logged in as: <b>@ViewBag.ContentAdmins</b></p>
+    <a class="btn btn-primary float-end" href="@Url.Action("Login", "Users")">Log Out</a>
+</div>
+
+<div class="mb-5">
+
+    <div class="d-inline-block">
+        <form method="post" action="AddPerson">
+            <input type="hidden" class="form-control" value="@ViewBag.ContentAdmins" asp-for="Username">
+
+            <div class="input-group mb-3">
+                <select class="custom-select" id="inputGroupSelect02" asp-for="Role">
+                    <option selected value="Movie">Add Movie</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>
+    </div>
+</div>
+
+
+<div class="text-center mb-5">
+
+    <h2>Movies</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Length</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (AddMovieViewModel movie in ViewBag.Movies)
+            {
+                <tr>
+                    <td>@movie.Moviesid</td>
+                    <td>@movie.Moviename</td>
+                    <td>@movie.Movielength minutes</td>
+
+                    <td>
+                        <a href="@Url.Action("ViewMovieIndex", "ContentAdmins", movie)">View</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

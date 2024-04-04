@@ -1,0 +1,9 @@
+Username / Password / Role
+
+agge / 1234 / Content Admin
+angan / 1234 / Customer
+anto / 1234 / Customer
+kate / 1234 / Customer
+nat / 1234 / Content Admin
+theo / 1234 / Admin
+zina / 1234 / Customer

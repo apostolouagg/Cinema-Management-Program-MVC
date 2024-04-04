@@ -1,0 +1,75 @@
+﻿@model MVCERGASIA.Models.LoginViewModel
+
+@if (ViewBag.flag == true)
+{
+    <script>
+        alert('@ViewBag.AlertMessage');
+    </script>
+}
+
+<div class="float-end">
+    <p class="mb-3">You are logged in as: <b>@ViewBag.Customer</b></p>
+    <input type="hidden" class="form-control" value="@ViewBag.Customer" asp-for="Username">
+    <a class="btn btn-primary float-end" href="@Url.Action("Login", "Users")">Log Out</a>
+</div>
+
+<div class="text-left mb-5">
+    <h2>Movies</h2>
+
+    <h5>Available Movies from 04/01/2024 - 08/01/2024</h5>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Length</th>
+                <th>Date and Time</th>
+                <th>Cinema</th>
+                <th> </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (ViewCustomersMoviesViewModel movie in ViewBag.Movies)
+            {
+                <tr>
+                    <td>@movie.moviename</td>
+                    <td>@movie.movielength minutes</td>
+                    <td>@movie.movieTime</td>
+                    <td>@movie.movieCinemaName</td>
+
+                    <td>
+                        <a href="@Url.Action("ViewCustomersMovieIndex", "Customers", movie)">View</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="text-left mt-10">
+    <h2>Reservations</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Movie Name</th>
+                <th>Movie Theatre</th>
+                <th>Date and Time</th>
+                <th>Tickets</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (ViewReservationsViewModel res in ViewBag.Reservations)
+            {
+                <tr>
+                    <td>@res.VreservationsMovieName</td>
+                    <td>@res.VreservationsCinemaName</td>
+                    <td>@res.Vreservations_time</td>
+                    <td>@res.Vnumber_of_seats</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

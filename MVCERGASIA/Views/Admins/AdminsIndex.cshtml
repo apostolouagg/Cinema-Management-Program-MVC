@@ -1,0 +1,98 @@
+﻿@model MVCERGASIA.Models.LoginViewModel
+
+@if (ViewBag.flag == true)
+{
+    <script>
+        alert('@ViewBag.AlertMessage');
+    </script>
+}
+
+<div class="float-end">
+    <p class="mb-3">You are logged in as: <b>@ViewBag.Admins</b></p>
+    <a class="btn btn-primary float-end" href="@Url.Action("Login", "Users")">Log Out</a>
+</div>
+
+<div class="mb-5">
+
+    <div class="d-inline-block">
+        <form method="post" action="AddPerson">
+            <input type="hidden" class="form-control" value="@ViewBag.Admins" asp-for="Username">
+
+            <p>Who do you want to Add?</p>
+
+            <div class="input-group mb-3">
+                <select class="custom-select" id="inputGroupSelect02" asp-for="Role">
+                    <option selected value="Customer">Add Customer</option>
+                    <option value="Content Admin">Add Content Admin</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit Add Option</button>
+
+        </form>
+    </div>
+</div>
+
+<div class="mb-5">
+    <div class="text-center">
+
+        <h2>Content Admins</h2>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (DeleteContentAndCustomerViewModel content in ViewBag.ContentAdmin)
+                {
+                    <tr>
+                        <td>@content.Did</td>
+                        <td>@content.Dname</td>
+                        <td>@content.AddDusername</td>
+
+                        <td>
+                            <a href="@Url.Action("ViewContentAdminIndex", "Admins", content)">View</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center mt-5">
+
+        <h2>Customers</h2>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (DeleteContentAndCustomerViewModel customers in ViewBag.Customers)
+                {
+                    <tr>
+                        <td>@customers.Did</td>
+                        <td>@customers.Dname</td>
+                        <td>@customers.AddDusername</td>
+
+                        <td>
+                            <a href="@Url.Action("ViewCustomerIndex", "Admins", customers)">View</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@model MVCERGASIA.Models.LoginViewModel
+
+<div class="w-25 m-auto">
+
+    @if (ViewBag.flag == true)
+    {
+        <script>
+            alert('@ViewBag.AlertMessage');
+        </script>
+    }
+
+    <form method="post" action="Login">
+
+        <div class="text-center">
+            <h1 class="mb-5">Log In</h1>
+
+            <div class="mb-3">
+                <label for="" class="form-label">Username</label>
+                <input type="text" class="form-control" asp-for="Username">
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">Password</label>
+                <input type="password" class="form-control" asp-for="Password">
+            </div>
+        </div>
+
+        <div class="float-start">
+            <p>Choose Role:</p>
+
+            <div class="input-group">
+                <select class="custom-select" id="inputGroupSelect02" asp-for="Role">
+                    <option selected value="Customer">Customer</option>
+                    <option value="Content Admin">Content Admin</option>
+                    <option value="Admin">Admin</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary float-end mt-4">Submit</button>
+
+
+    </form>
+</div>
