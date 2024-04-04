@@ -1,4 +1,4 @@
-# Εργασία MVC 2022-2023
+# Εργασία MVC 2023-2024
 
 ### Εκφώνηση Εργασίας: [εργασια MVC 2023-24.pdf](https://github.com/apostolouagg/Cinema-Management-Program-MVC/files/14876284/MVC.2023-24.pdf)
 
